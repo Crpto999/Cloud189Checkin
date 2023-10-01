@@ -239,7 +239,7 @@ const pushTelegramBot = (title, desp) => {
   if (!(telegramBot.botToken && telegramBot.chatId)) { return; }
   const data = {
     chat_id: telegramBot.chatId,
-    text: `*${title}*\n\n\`\`\`${desp}\`\`\``, 
+    text: `*${title}*\n\`\`\`${desp}\`\`\``, 
     parse_mode: "Markdown", // 指定parse_mode为Markdown
   };
   superagent.post(`https://api.telegram.org/bot${telegramBot.botToken}/sendMessage`)
