@@ -272,7 +272,7 @@ async function main() {
     if (userName && password) {
       const userNameInfo = mask(userName, 3, 7);
       try {
-        logger.log(`账户 ${userNameInfo}开始执行`);
+        logger.log(`用户:${userNameInfo}`);
         await doLogin(userName, password);
         const result = await doTask();
         result.forEach((r) => logger.log(r));
@@ -282,7 +282,7 @@ async function main() {
           throw e;
         }
       } finally {
-        logger.log(`账户 ${userNameInfo}执行完毕`);
+        // logger.log(`账户${userNameInfo}执行完毕`);
       }
     }
   }
