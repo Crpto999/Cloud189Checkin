@@ -239,7 +239,7 @@ const pushTelegramBot = (title, desp) => {
   if (!(telegramBot.botToken && telegramBot.chatId)) { return; }
   const data = {
     chat_id: telegramBot.chatId,
-    text: `*${title}*\n\n\`\`\`${desp}\`\`\``, // 使用Markdown格式加粗标题和添加代码块
+    text: `*${title}*\n\n\`\`\`${desp}\`\`\``, 
     parse_mode: "Markdown", // 指定parse_mode为Markdown
   };
   superagent.post(`https://api.telegram.org/bot${telegramBot.botToken}/sendMessage`)
@@ -272,7 +272,7 @@ async function main() {
     if (userName && password) {
       const userNameInfo = mask(userName, 3, 7);
       try {
-        // logger.log(`账户 ${userNameInfo}开始执行`);
+        logger.log(`账户 ${userNameInfo}开始执行`);
         await doLogin(userName, password);
         const result = await doTask();
         result.forEach((r) => logger.log(r));
@@ -282,7 +282,7 @@ async function main() {
           throw e;
         }
       } finally {
-        // logger.log(`账户 ${userNameInfo}执行完毕`);
+        logger.log(`账户 ${userNameInfo}执行完毕`);
       }
     }
   }
