@@ -202,7 +202,7 @@ const doTask = async () => {
     const res = await doGet(task);
     if (index === 0) {
       // 签到
-      result.push(`${res.isSign ? '已经签到过了，' : ''}签到获得${res.netdiskBonus}M空间`);
+      result.push(`${res.isSign ? '今日已签，' : ''}获得${res.netdiskBonus}M空间`);
     } else if (res.errorCode === 'User_Not_Chance') {
       result.push(`第${index}次抽奖失败,次数不足`);
     } else {
@@ -239,7 +239,8 @@ const pushTelegramBot = (title, desp) => {
   if (!(telegramBot.botToken && telegramBot.chatId)) { return; }
   const data = {
     chat_id: telegramBot.chatId,
-    text: `**${title}**\n\n${desp}`, // 使用Markdown格式加粗标题
+    text: `**${title}**\n\n\`\`\`${desp}\`\`\``, // 使用Markdown格式加粗标题和添加代码块
+    parse_mode: "Markdown", // 指定parse_mode为Markdown
   };
   superagent.post(`https://api.telegram.org/bot${telegramBot.botToken}/sendMessage`)
     .type('form')
