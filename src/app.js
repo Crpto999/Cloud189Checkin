@@ -272,17 +272,17 @@ async function main() {
     if (userName && password) {
       const userNameInfo = mask(userName, 3, 7);
       try {
-        logger.log(`账户 ${userNameInfo}开始执行`);
+        // logger.log(`账户 ${userNameInfo}开始执行`);
         await doLogin(userName, password);
         const result = await doTask();
         result.forEach((r) => logger.log(r));
-        logger.log('任务执行完毕');
+        // logger.log('任务执行完毕');
       } catch (e) {
         if (e.code === 'ECONNRESET') {
           throw e;
         }
       } finally {
-        logger.log(`账户 ${userNameInfo}执行完毕`);
+        // logger.log(`账户 ${userNameInfo}执行完毕`);
       }
     }
   }
@@ -294,7 +294,7 @@ async function main() {
   } finally {
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join('')}`).join('  \n');
-    push('🪭[天翼云盘] 签到完成', content);
+    push('🪭 [天翼云盘] 签到完成', content);
     recording.erase();
   }
 })();
