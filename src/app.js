@@ -104,11 +104,19 @@ const pushTelegramBot = (title, desp) => {
   if (!(telegramBot.botToken && telegramBot.chatId)) {
     return;
   }
+
+  // 自动转义MarkdownV2保留字符
+  const escapeMarkdownV2 = (text) => {
+    return text
+      .replace(/(\*|_|~|`|\[|\]|\(|\)|\#|\+|\-|\=|\>|\!|\.)/g, '\\$1'); // 转义所有MarkdownV2保留字符
+  };
+
   const data = {
     chat_id: telegramBot.chatId,
-    text: `**${title}**\n\n${desp}`,
+    text: `*${escapeMarkdownV2(title)}*\n\n${escapeMarkdownV2(desp)}`, // 转义title和desp中的保留字符
     parse_mode: "MarkdownV2", 
   };
+
   superagent
     .post(`https://api.telegram.org/bot${telegramBot.botToken}/sendMessage`)
     .type("form")
@@ -126,6 +134,7 @@ const pushTelegramBot = (title, desp) => {
       }
     });
 };
+
 
 const pushWecomBot = (title, desp) => {
   if (!(wecomBot.key && wecomBot.telphone)) {
@@ -241,7 +250,7 @@ async function main() {
   } finally {
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join("")}`).join("  \n");
-    push("🪭 [天翼云盘 3900] 签到完成", content);
+    push("🪭 [天翼云盘 #3900] 签到完成", content);
     recording.erase();
   }
 })();
