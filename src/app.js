@@ -250,7 +250,7 @@ async function main() {
   } finally {
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join("")}`).join("  \n");
-    push("🪭 [天翼云盘 #3900] 签到完成", content);
+    push("🪭 [天翼云盘 #3900] 今日已签", content);
     recording.erase();
   }
 })();
