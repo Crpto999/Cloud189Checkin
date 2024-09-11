@@ -106,7 +106,7 @@ const pushTelegramBot = (title, desp) => {
   }
   const data = {
     chat_id: telegramBot.chatId,
-    text: `*${title}*\n\n${desp}`,
+    text: `**${title}**\n\n${desp}`,
     parse_mode: "MarkdownV2", 
   };
   superagent
@@ -241,7 +241,7 @@ async function main() {
   } finally {
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join("")}`).join("  \n");
-    push("🪭 [天翼云盘 #3900] 签到完成", content);
+    push("🪭 [天翼云盘 \\#3900] 签到完成", content);
     recording.erase();
   }
 })();
