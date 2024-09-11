@@ -241,7 +241,7 @@ async function main() {
   } finally {
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join("")}`).join("  \n");
-    push("*🪭 \\[天翼云盘 \\#3900\\] 签到完成*", content.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    push("🪭 [天翼云盘 #3900] 签到完成", content);
     recording.erase();
   }
 })();
