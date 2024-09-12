@@ -31,7 +31,7 @@ const buildTaskResult = (res, result) => {
   if (res.errorCode === "User_Not_Chance") {
     result.push(`      第${index}次抽奖失败,次数不足`);
   } else {
-    result.push(`      第${index}次抽奖成功,抽奖获得${res.prizeName}`);
+    result.push(`      第${index}次抽奖成功,获得${res.prizeName}`);
   }
 };
 
@@ -42,7 +42,7 @@ const doTask = async (cloudClient) => {
   const result = [];
   const res1 = await cloudClient.userSign();
   result.push(
-    `${res1.isSign ? "      已经签到过了，" : ""}签到获得${res1.netdiskBonus}M空间`
+    `${res1.isSign ? "      已经签到过了，" : ""}      签到获得${res1.netdiskBonus}M空间`
   );
   await delay(5000); // 延迟5秒
 
@@ -220,12 +220,12 @@ async function main() {
         const { cloudCapacityInfo, familyCapacityInfo } =
           await cloudClient.getUserSizeInfo();
         logger.log(
-          `      个人总容量：${(
+          `      个人容量：${(
             cloudCapacityInfo.totalSize /
             1024 /
             1024 /
             1024
-          ).toFixed(2)}G,家庭总容量：${(
+          ).toFixed(2)}G,家庭容量：${(
             familyCapacityInfo.totalSize /
             1024 /
             1024 /
