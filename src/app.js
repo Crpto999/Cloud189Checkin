@@ -87,7 +87,7 @@ async function main() {
   ] of userSizeInfoMap) {
     const afterUserSizeInfo = await cloudClient.getUserSizeInfo();
     logger.log(
-      `个人容量：${(
+      `个人：${(
         (afterUserSizeInfo.cloudCapacityInfo.totalSize -
           userSizeInfo.cloudCapacityInfo.totalSize) /
         1024 /
@@ -100,7 +100,7 @@ async function main() {
       ).toFixed(2)}G`
     );
     logger.log(
-      `家庭容量：${(
+      `家庭：${(
         (afterUserSizeInfo.familyCapacityInfo.totalSize -
           userSizeInfo.familyCapacityInfo.totalSize) /
         1024 /
@@ -124,7 +124,7 @@ async function main() {
     const logs = catLogs();
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join("")}`).join("  \n");
-    push("**🪭[天翼云盘 #3900]**", logs + content);
+    push("🪭[天翼云盘 #3900]", logs + content);
     recording.erase();
     cleanLogs();
   }
